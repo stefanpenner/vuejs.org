@@ -121,6 +121,9 @@ code {
 em {
   color: #7f8c8d;
 }
+p {
+  word-spacing: 0.05em;
+}
 .highlight {
   margin: 0;
   overflow-x: auto;
@@ -211,6 +214,9 @@ em {
   }
   #main {
     padding: 0 1.4em;
+  }
+  .highlight pre {
+    padding: 1.2em 1em;
   }
 }
 #main {
