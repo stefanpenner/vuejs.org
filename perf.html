@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Writing Custom Filters - vue.js</title>
+        <title>Performance Comparisons - vue.js</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -24,7 +24,7 @@
         <span>vue.js</span>
     </a>
     <ul id="nav">
-        <li><a href="/guide/" class="nav-link current">Guide</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/api/" class="nav-link">API Reference</a></li>
         <li><a href="/examples/" class="nav-link">Examples</a></li>
         <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
@@ -33,32 +33,57 @@
         
         <div id="main">
             
-    <div class="sidebar">
-    <h2>Guide</h2>
-    <ul>
-    
-        <li><a href="/guide/index.html" class="sidebar-link">Installation</a></li>
-    
-        <li><a href="/guide/getting-started.html" class="sidebar-link">Getting Started</a></li>
-    
-        <li><a href="/guide/custom-directive.html" class="sidebar-link">Writing Custom Directives</a></li>
-    
-        <li><a href="/guide/custom-filter.html" class="sidebar-link current">Writing Custom Filters</a></li>
-    
-        <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
-    
-        <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
-    
-        <li><a href="/guide/form-validation.html" class="sidebar-link">Form Validation</a></li>
-    
-        <li><a href="/guide/routing.html" class="sidebar-link">Routing</a></li>
-    
-    </ul>
-</div>
+<div class="content">
+    <h1>Performance Comparisons</h1>
+    <p>Draft. Links coming soon.</p>
+<h2 id="TodoMVC_Benchmark">TodoMVC Benchmark</h2>
+<p>A benchmark from the <a href="https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench" target="_blank">webkit performance tests</a>. Add 100 todos, toggle them one by one, then delete them one by one. Tests are run on an early-2011 Macbook Pro with a Core i7-2635QM Processor (quad-core, 2 GHz) under OS X Mavericks 10.9.1.</p>
+<ul>
+<li>Chrome 32<ul>
+<li>Vue.js: <strong>531ms</strong></li>
+<li>VanillaJS: 1308ms</li>
+<li>Ember.js: 2540ms</li>
+<li>Backbone.js: 859ms</li>
+<li>jQuery: 2363ms</li>
+<li>AngularJS: 1455ms</li>
+<li>React.js: 7930ms</li>
+</ul>
+</li>
+<li>Firefox 26<ul>
+<li>Vue.js: 680ms</li>
+<li>VanillaJS: <strong>420ms</strong></li>
+<li>Ember.js: 3627ms</li>
+<li>Backbone.js: 1109ms</li>
+<li>jQuery: 1338ms</li>
+<li>AngularJS: 1762ms</li>
+<li>React.js: 4420ms</li>
+</ul>
+</li>
+<li>Safari 7<ul>
+<li>Vue.js: <strong>278ms</strong></li>
+<li>VanillaJS: 1426ms</li>
+<li>Ember.js: 1670ms</li>
+<li>Backbone.js: 867ms</li>
+<li>jQuery: 3193ms</li>
+<li>AngularJS: 1239ms</li>
+<li>React.js: 2714ms</li>
+</ul>
+</li>
+<li>3-Browser Average<ul>
+<li>Vue.js: <strong>496.3ms</strong> (47.5% faster than second)</li>
+<li>VanillaJS: 1051.3ms</li>
+<li>Ember.js: 2612.3ms</li>
+<li>Backbone.js: 945ms</li>
+<li>jQuery: 2298ms</li>
+<li>AngularJS: 1485.3ms</li>
+<li>React.js: 5021.3ms</li>
+</ul>
+</li>
+</ul>
+<h2 id="Updating_100_Balls">Updating 100 Balls</h2>
+<p>You might have seen this <a href="http://jsfiddle.net/jashkenas/CGSd5/" target="_blank">comparison</a> between Backbone and Ember by Jeremy Ashkenas.</p>
+<p>Vue.js can easily update these 100 balls at an optimal 60fps.</p>
 
-<div class="content with-sidebar">
-    <h1>Writing Custom Filters</h1>
-    
 </div>
         </div>
         <script>
