@@ -223,6 +223,9 @@ p {
   margin: 5em 2em;
   text-align: center;
 }
+#hero a.button {
+  width: 180px;
+}
 h1 {
   font-size: 3em;
 }
@@ -236,7 +239,7 @@ a.button {
   padding: 0.5em 1.5em;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0,0,0,0.2);
-  border-bottom: 2px solid #3aa373;
+  border-bottom: 1px solid #3aa373;
   transition: background-color 0.2s ease-out;
 }
 a.button:hover {
