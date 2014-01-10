@@ -251,6 +251,11 @@ p {
 .content.with-sidebar {
   margin: 0 0 0 280px;
 }
+.content.with-sidebar ul {
+  font-size: 0.9em;
+  padding-left: 1.25em;
+  color: #2c3e50;
+}
 .content h1 {
   margin: 0 0 1em;
 }
@@ -273,9 +278,7 @@ p {
   line-height: 1.6em;
 }
 .content ul {
-  font-size: 0.9em;
-  padding-left: 1.25em;
-  color: #2c3e50;
+  padding-left: 1em;
 }
 .content a {
   color: #42b983;
