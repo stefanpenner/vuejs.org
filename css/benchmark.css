@@ -1,3 +1,6 @@
+#benchmark-results {
+  margin-bottom: 2em;
+}
 #benchmark-results ul {
   list-style-type: none;
   padding: 0;
@@ -20,6 +23,9 @@
 }
 #benchmark-results .bar {
   width: 60%;
+}
+#benchmark-results .bar.min .inner {
+  background-color: #e74c3c;
 }
 #benchmark-results .inner {
   height: 3px;

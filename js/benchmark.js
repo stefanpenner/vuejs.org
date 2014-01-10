@@ -50,7 +50,7 @@
     }
     function buildList (data) {
         var list = document.createElement('UL'),
-            li, time, max = 0
+            li, time, max = 0, min = Infinity
         for (var key in data) {
             time = data[key]
             li = document.createElement('LI')
@@ -60,6 +60,7 @@
                 '<span class="bar" data-time="' + time + '"><span class="inner"></span></span>'
             list.appendChild(li)
             if (time > max) max = time
+            if (time < min) min = time
         }
         var bars = list.querySelectorAll('.bar'),
             i = bars.length
@@ -67,6 +68,7 @@
             var bar = bars[i],
                 t = bar.dataset.time,
                 pct = ~~(t / max * 100)
+            if (t == min) bar.className = 'bar min'
             bar.querySelector('.inner').style.width = pct + '%'
         }
         return list
