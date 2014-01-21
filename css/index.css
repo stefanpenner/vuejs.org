@@ -177,6 +177,7 @@ p {
 #logo {
   display: block;
   margin: 0 auto;
+  width: 200px;
 }
 #hero {
   margin: 5em 0 8em;
@@ -185,6 +186,9 @@ p {
 #hero .sub {
   color: #7f8c8d;
   font-size: 1.5em;
+}
+#hero .warning {
+  color: #7f8c8d;
 }
 #hero a.button {
   width: 180px;
@@ -278,26 +282,6 @@ a.button:hover {
   background-color: #fff;
   top: -0.65em;
 }
-#demo {
-  border: 1px solid #eee;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 4px;
-  padding: 25px 35px;
-  margin-bottom: 40px;
-}
-#demo h1 {
-  margin: 0 0 0.5em;
-  font-size: 2em;
-}
-#demo ul {
-  padding-left: 1.5em;
-  font-size: 1.2em;
-  line-height: 1.5em;
-  margin: 0;
-}
-#demo ul li.done {
-  text-decoration: line-through;
-}
 @media screen and (max-width: 420px) {
   body {
     font-size: 14px;
@@ -325,6 +309,12 @@ a.button:hover {
   #hero a.button {
     font-size: 1em;
     margin: 0.5em 0;
+  }
+  #hero .sub {
+    font-size: 1em;
+  }
+  #hero .warning {
+    font-size: 0.8em;
   }
   #main {
     margin: 0 auto;
