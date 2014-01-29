@@ -3,9 +3,14 @@
     <head>
         <title>vue.js</title>
         <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = ""
+        </script>
+        <script src="/js/classList.js"></script>
         <link rel="stylesheet" href="/css/index.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -28,12 +33,13 @@
     </ul>
     <img id="logo" src="/images/logo.png">
     <h1>Vue.js</h1>
-    <p class="sub">Intuitive, Fast and Composable MVVM</p>
+    <p class="sub">MVVM Made Simple.</p>
     <p>
-        <a href="/guide/installation.html" class="button">Get Vue.js v0.7.6</a>
+        <a href="/guide/installation.html" class="button">Get Vue.js v0.8.0</a>
         <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
     </p>
 </div>
+<p class="desc">Vue.js is a library for building interactive web interfaces.<br>It provides efficient MVVM data bindings with a simple and flexible API.</p>
 <p class="divider"><span>What's Cool</span></p>
 <div id="features">
     <div class="feat">
@@ -71,24 +77,10 @@
         
         <div id="main">
             
-<div class="content">
+<div class="content ">
     
 </div>
         </div>
-        <script>
-            var main = document.getElementById('main'),
-                doc = document.documentElement,
-                body = document.body
-            if (document.querySelector('.sidebar')) {
-                window.addEventListener('scroll', function () {
-                    var top = doc && doc.scrollTop || body.scrollTop
-                    if (top > 94) {
-                        main.className = 'fix-sidebar'
-                    } else {
-                        main.className = ''
-                    }
-                })
-            }
-        </script>
+        <script src="/js/common.js"></script>
     </body>
 </html>

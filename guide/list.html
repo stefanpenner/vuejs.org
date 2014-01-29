@@ -3,9 +3,14 @@
     <head>
         <title>Displaying a List - vue.js</title>
         <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <script src="/js/classList.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,53 +40,152 @@
         <div id="main">
             
     <div class="sidebar">
-    <h2>Guide</h2>
-    <ul>
-    
-        <li><a href="/guide/installation.html" class="sidebar-link">Installation</a></li>
-    
-        <li><a href="/guide/index.html" class="sidebar-link">Getting Started</a></li>
-    
-        <li><a href="/guide/list.html" class="sidebar-link current">Displaying a List</a></li>
-    
-        <li><a href="/guide/events.html" class="sidebar-link">Listening for Events</a></li>
-    
-        <li><a href="/guide/forms.html" class="sidebar-link">Handling Forms</a></li>
-    
-        <li><a href="/guide/computed.html" class="sidebar-link">Computed Properties</a></li>
-    
-        <li><a href="/guide/directives.html" class="sidebar-link">Directives In Depth</a></li>
-    
-        <li><a href="/guide/filters.html" class="sidebar-link">Filters in Depth</a></li>
-    
-        <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
-    
-        <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
-    
-        <li><a href="/guide/architecture.html" class="sidebar-link">App Architecture</a></li>
-    
-    </ul>
+    <div class="toggle">···</div>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul>
+        
+            <li><a href="/guide/installation.html" class="sidebar-link">Installation</a></li>
+        
+            <li><a href="/guide/index.html" class="sidebar-link">Getting Started</a></li>
+        
+            <li><a href="/guide/directives.html" class="sidebar-link">Directives In Depth</a></li>
+        
+            <li><a href="/guide/filters.html" class="sidebar-link">Filters in Depth</a></li>
+        
+            <li><a href="/guide/list.html" class="sidebar-link current">Displaying a List</a></li>
+        
+            <li><a href="/guide/events.html" class="sidebar-link">Listening for Events</a></li>
+        
+            <li><a href="/guide/forms.html" class="sidebar-link">Handling Forms</a></li>
+        
+            <li><a href="/guide/computed.html" class="sidebar-link">Computed Properties</a></li>
+        
+            <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
+        
+            <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
+        
+            <li><a href="/guide/application.html" class="sidebar-link">Building Larger Apps</a></li>
+        
+        </ul>
+    </div>
 </div>
 
-<div class="content with-sidebar">
+<div class="content guide with-sidebar">
     <h1 id="Displaying_a_List">Displaying a List</h1>
+<p>You can use the <code>v-repeat</code> directive to repeat a template element based on an Array of objects on the ViewModel. For every object in the Array, the directive will create a child ViewModel using that object as the data object. On and inside the template element you have access to properties of both the child ViewModel and the parent ViewModel. In addition, you also have access to the current child ViewModel’s <code>$index</code> property, which is the index of its data object in the Array.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">class</span>=<span class="value">"item-{&#123;$index&#125;}"</span>&gt;</span>
+        {&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</pre></td></tr></table></figure>
 
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue({
+    el: <span class="string">'#demo'</span>,
+    data: {
+        parentMsg: <span class="string">'Hello'</span>,
+        items: [
+            { childMsg: <span class="string">'Foo'</span> },
+            { childMsg: <span class="string">'Bar'</span> }
+        ]
+    }
+})
+</pre></td></tr></table></figure>
+
+<p>Result:</p>
+<p><ul id="demo"><li v-repeat="items" class="item-{&#123;$index&#125;}">{&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</li></ul></p>
+<script src="/js/vue.min.js"></script>
+<script>
+var demo = new Vue({
+    el: '#demo',
+    data: {
+        parentMsg: 'Hello',
+        items: [
+            { childMsg: 'Foo' },
+            { childMsg: 'Bar' }
+        ]
+    }
+})
+</script>
+
+<h2 id="Mutation_Methods">Mutation Methods</h2>
+<p>Under the hood, Vue.js intercepts an observed Array’s mutating methods (<code>push()</code>, <code>pop()</code>, <code>shift()</code>, <code>unshift()</code>, <code>splice()</code>, <code>sort()</code> and <code>reverse()</code>) so they will also trigger View updates.</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>demo.items.push({ childMsg: <span class="string">'Baz'</span> })
+</pre></td></tr></table></figure>
+
+<p><a href="#demo" onclick="demoPush()">Execute this</a></p>
+
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>demo.items.pop()
+</pre></td></tr></table></figure>
+
+<p><a href="#demo" onclick="demo.items.pop()">Execute this</a></p>
+
+<p class="tip">You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js.</p>
+
+<h2 id="Augmentations-3a-_remove-28-29-_and_replace-28-29-">Augmentations: remove() and replace()</h2>
+<p>In addition, Vue.js also augments data-bound Arrays with two custom mutating methods: <code>remove()</code> and <code>replace()</code>. These two methods are overloaded and quite versatile - they can take an index, an object in the Array, or a function.</p>
+<p>When the argument is an index or an object in the Array, <code>replace()</code> takes an additional argument which is the object to be swappd in. In this case both methods return the removed/replaced object:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="comment">// replace a random item with a new one</span>
+<span class="keyword">var</span> i = Math.floor(Math.random() * demo.items.length)
+demo.items.replace(i, { childMsg: <span class="string">'Replaced!'</span>})
+</pre></td></tr></table></figure>
+
+<p><a href="#demo" onclick="demoReplace()">Execute this</a></p>
+
+<p>When the argument is a function, for <code>remove()</code> an object will be removed if the function returns true; for <code>replace()</code> an object will be replaced by the return value if the value is not undefined. Both methods return an Array of all removed/replaced objects:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="comment">// remove all replaced items</span>
+demo.items.remove(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span>
+    <span class="keyword">return</span> item.childMsg === <span class="string">'Replaced!'</span>
+})
+</pre></td></tr></table></figure>
+
+<p><a href="#demo" onclick="demoRemove()">Execute this</a></p>
+
+<p>Next up: <a href="/guide/events.html">Listening for Events</a>.</p>
+<script>
+function demoPush () {
+    demo.items.push({ childMsg: 'Baz' })
+}
+
+function demoRemove () {
+    demo.items.remove(function (item) {
+        return item.childMsg === 'Replaced!'
+    })
+}
+
+function demoReplace () {
+    var i = Math.floor(Math.random() * demo.items.length)
+    demo.items.replace(i, { childMsg: 'Replaced!'})
+}
+</script>
 </div>
         </div>
-        <script>
-            var main = document.getElementById('main'),
-                doc = document.documentElement,
-                body = document.body
-            if (document.querySelector('.sidebar')) {
-                window.addEventListener('scroll', function () {
-                    var top = doc && doc.scrollTop || body.scrollTop
-                    if (top > 94) {
-                        main.className = 'fix-sidebar'
-                    } else {
-                        main.className = ''
-                    }
-                })
-            }
-        </script>
+        <script src="/js/common.js"></script>
     </body>
 </html>

@@ -3,9 +3,14 @@
     <head>
         <title>Global Methods - vue.js</title>
         <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "api"
+        </script>
+        <script src="/js/classList.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,27 +40,30 @@
         <div id="main">
             
     <div class="sidebar">
-    <h2>Api</h2>
-    <ul>
-    
-        <li><a href="/api/index.html" class="sidebar-link">Class: Vue</a></li>
-    
-        <li><a href="/api/instantiation-options.html" class="sidebar-link">Instantiation Options</a></li>
-    
-        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
-    
-        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
-    
-        <li><a href="/api/global-methods.html" class="sidebar-link current">Global Methods</a></li>
-    
-        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
-    
-        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
-    
-    </ul>
+    <div class="toggle">···</div>
+    <div class="list">
+        <h2>Api</h2>
+        <ul>
+        
+            <li><a href="/api/index.html" class="sidebar-link">Class: Vue</a></li>
+        
+            <li><a href="/api/instantiation-options.html" class="sidebar-link">Instantiation Options</a></li>
+        
+            <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+        
+            <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+        
+            <li><a href="/api/global-methods.html" class="sidebar-link current">Global Methods</a></li>
+        
+            <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+        
+            <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+        
+        </ul>
+    </div>
 </div>
 
-<div class="content with-sidebar">
+<div class="content api with-sidebar">
     <h1 id="Global_Methods">Global Methods</h1>
 <h3 id="Vue-extend-28-_options_-29-">Vue.extend( options )</h3>
 <ul>
@@ -138,13 +146,9 @@ Vue.config({
 10
 11
 12
-13
-14
 </pre></td><td class="code"><pre>{
     <span class="comment">// prefix for directives</span>
     prefix: <span class="string">'v'</span>,
-    <span class="comment">// batch DOM updates and render async</span>
-    async: <span class="literal">true</span>,
     <span class="comment">// log debug info</span>
     debug: <span class="literal">false</span>,
     <span class="comment">// supress warnings</span>
@@ -232,20 +236,6 @@ Vue.config({
 
 </div>
         </div>
-        <script>
-            var main = document.getElementById('main'),
-                doc = document.documentElement,
-                body = document.body
-            if (document.querySelector('.sidebar')) {
-                window.addEventListener('scroll', function () {
-                    var top = doc && doc.scrollTop || body.scrollTop
-                    if (top > 94) {
-                        main.className = 'fix-sidebar'
-                    } else {
-                        main.className = ''
-                    }
-                })
-            }
-        </script>
+        <script src="/js/common.js"></script>
     </body>
 </html>
