@@ -232,7 +232,7 @@ body {
   margin: 0.5em 0 0;
 }
 #hero .sub {
-  color: #7f8c8d;
+  color: #34495e;
   font-size: 1.2em;
 }
 #hero .warning {
@@ -250,10 +250,13 @@ body {
 }
 #hero .down {
   position: absolute;
-  bottom: 30px;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 1.5em 0;
+}
+#hero .down img {
   width: 20px;
-  left: 50%;
-  margin-left: -10px;
 }
 #hero a.button {
   display: inline-block;
@@ -425,6 +428,7 @@ body {
   #hero .warning,
   #hero .desc {
     font-size: 0.9em;
+    margin: 1em 0;
   }
   #hero .warning br,
   #hero .desc br {
