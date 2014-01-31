@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="todomvc"
+             errors="0"
+             failures="1"
+             tests="undefined">
+  
+  <testsuite errors="0" failures="1" hostname="" id=""
+    name="vuejs" package="todomvc" skipped="1" 
+    tests="6" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;#todoapp&gt; was visible after 48 milliseconds.">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;#main&gt; is hidden.">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;#footer&gt; is hidden.">
+        
+      </testcase>  
+    
+      <testcase name="Assertion passed: found 1 element matching &lt;#filters .selected&gt;">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;#filters .selected&gt; contains text: All">
+          
+          <failure message="Expected &quot;All&quot; but got: &quot;&quot;"></failure>
+        
+      </testcase>  
+    
+    
+    </testsuite>
+  
+</testsuites>
