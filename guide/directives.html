@@ -5,12 +5,12 @@
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
         <script>
             window.PAGE_TYPE = "guide"
         </script>
-        <script src="/js/classList.js"></script>
+        <script src="/js/vue.min.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,6 +38,7 @@
 </div>
         
         <div id="main">
+        
             
     <div class="sidebar">
     <div class="toggle">···</div>
@@ -61,22 +62,24 @@
         
             <li><a href="/guide/computed.html" class="sidebar-link">Computed Properties</a></li>
         
-            <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
+            <li><a href="/guide/transitions.html" class="sidebar-link">Adding Transition Effects</a></li>
         
             <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
         
             <li><a href="/guide/application.html" class="sidebar-link">Building Larger Apps</a></li>
+        
+            <li><a href="/guide/plugin.html" class="sidebar-link">Plugins</a></li>
         
         </ul>
     </div>
 </div>
 
 <div class="content guide with-sidebar">
-    <h1 id="Directives_In_Depth">Directives In Depth</h1>
-<h2 id="Synopsis">Synopsis</h2>
-<p>A Vue.js directive is an HTML attribute that takes the following format:</p>
-<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>prefix-directiveId=<span class="string">"[arg:] ( keypath | expression ) [filters...]"</span>
+    <h1>Directives In Depth</h1>
+    <h2 id="Synopsis">Synopsis</h2>
+<p>If you have not used AngularJS before, you probably don’t know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:</p>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">element</span> <span class="attribute">prefix-directiveId</span>=<span class="value">"[arg:] ( keypath | expression ) [filters...]"</span>&gt;</span><span class="tag">&lt;/<span class="title">element</span>&gt;</span>
 </pre></td></tr></table></figure>
 
 <h2 id="A_Simple_Example">A Simple Example</h2>
@@ -237,7 +240,6 @@
 
 <p><strong>Result</strong></p>
 <p><div id="demo" v-demo="LightSlateGray : msg"></div></p>
-<script src="/js/vue.min.js"></script>
 <script>
 Vue.directive('demo', {
     bind: function () {
@@ -262,6 +264,7 @@ var demo = new Vue({
 <p>For more complicated examples, checkout <code>src/directives/</code> in the source code.<br>Next: <a href="/guide/filters.html">Filters in Depth</a>.</p>
 
 </div>
+        
         </div>
         <script src="/js/common.js"></script>
     </body>

@@ -5,12 +5,12 @@
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
         <script>
             window.PAGE_TYPE = "api"
         </script>
-        <script src="/js/classList.js"></script>
+        <script src="/js/vue.min.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,6 +38,7 @@
 </div>
         
         <div id="main">
+        
             
     <div class="sidebar">
     <div class="toggle">···</div>
@@ -64,8 +65,8 @@
 </div>
 
 <div class="content api with-sidebar">
-    <h1 id="Instantiation_Options">Instantiation Options</h1>
-<h2 id="Data_-26-amp-3b-_Logic">Data &amp; Logic</h2>
+    <h1>Instantiation Options</h1>
+    <h2 id="Data_-26-amp-3b-_Logic">Data &amp; Logic</h2>
 <h3 id="data">data</h3>
 <ul>
 <li><strong>Type:</strong> <code>Object</code></li>
@@ -216,19 +217,17 @@ vm.a <span class="comment">// 2</span>
 </ul>
 <p>A hash of HTML attributes to be set on <code>vm.$el</code>.</p>
 <h2 id="Lifecycle_Hooks">Lifecycle Hooks</h2>
-<p>All lifecycle hooks have their <code>this</code> context bound to the ViewModel they belong to.</p>
+<p>All lifecycle hooks have their <code>this</code> context bound to the ViewModel instance they belong to. For <code>&#39;enteredView&#39;</code>, <code>&#39;leftView&#39;</code>, <code>&#39;beforeDestroy&#39;</code>, <code>&#39;afterDestroy&#39;</code>, the ViewModel instance will also emit events in the form of <code>&#39;hook:eventName&#39;</code>.</p>
 <h3 id="created">created</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
-<li>Alias: <code>beforeCompile</code></li>
 </ul>
-<p>Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.</p>
+<p>Called synchronously before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.</p>
 <h3 id="ready">ready</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
-<li>Alias: <code>afterCompile</code></li>
 </ul>
-<p>Called after the compilation has ended and the ViewModel is ready.</p>
+<p>Called synchronously after the compilation has ended and the ViewModel instance is ready.</p>
 <h3 id="enteredView">enteredView</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
@@ -275,15 +274,17 @@ vm.a <span class="comment">// 2</span>
 <ul>
 <li><strong>Type:</strong> <code>Object</code></li>
 </ul>
-<p>A hash of transitions to be made available to the ViewModel. For details see <a href="/guide/transitions.html">Using Transition Effects</a>.</p>
+<p>A hash of transitions to be made available to the ViewModel. For details see <a href="/guide/transitions.html">Adding Transition Effects</a>.</p>
 <h2 id="Misc">Misc</h2>
 <h3 id="lazy">lazy</h3>
 <ul>
 <li><strong>Type:</strong> <code>Boolean</code></li>
+<li><strong>Default:</strong> <code>false</code></li>
 </ul>
 <p>Whether to trigger <code>v-model</code> updates only on <code>change</code> event (hit enter or lose focus) or on every <code>input</code> event (on every keystroke).</p>
 
 </div>
+        
         </div>
         <script src="/js/common.js"></script>
     </body>

@@ -37,6 +37,40 @@ describe('UNIT: API', function () {
 
     })
 
+    describe('require()', function () {
+        
+        it('should expose internal modules', function () {
+            var c = Vue.require('config'),
+                cc = require('vue/src/config')
+            assert.strictEqual(c, cc)
+        })
+
+    })
+
+    describe('use()', function () {
+        
+        it('should install a plugin via its install function', function () {
+            var called = false
+            Vue.use({
+                install: function (vue) {
+                    called = true
+                    assert.strictEqual(vue, Vue)
+                }
+            })
+            assert.ok(called)
+        })
+
+        it('should install a plugin if its a function itself', function () {
+            var called = false
+            Vue.use(function (vue) {
+                called = true
+                assert.strictEqual(vue, Vue)
+            })
+            assert.ok(called)
+        })
+
+    })
+
     describe('filter()', function () {
 
         var reverse = function (input) {
@@ -66,7 +100,7 @@ describe('UNIT: API', function () {
 
         var dirTest
         
-        it('should create custom directive with set function only', function () {
+        it('should create custom directive with update() function only', function () {
             var testId = 'directive-1',
                 msg = 'wowow'
             Vue.directive('test', function (value) {
@@ -106,6 +140,21 @@ describe('UNIT: API', function () {
             assert.strictEqual(el.getAttribute(testId + 'update'), msg + 'update', 'should have called update()')
             vm.$destroy() // assuming this works
             assert.notOk(el.getAttribute(testId + 'bind'), 'should have called unbind()')
+        })
+
+        it('should not bind directive if no update() is provided', function () {
+            var called = false
+            Vue.directive('test-literal', {
+                bind: function () {
+                    called = true
+                    assert.strictEqual(this.expression, 'hihi')
+                    assert.notOk(this.binding)
+                }
+            })
+            new Vue({
+                template: '<div v-test-literal="hihi"></div>'
+            })
+            assert.ok(called)
         })
 
         it('should return directive object/fn if only one arg is given', function () {
@@ -664,29 +713,23 @@ describe('UNIT: API', function () {
 
             describe('hooks', function () {
 
-                describe('beforeCompile / created', function () {
+                describe('created', function () {
                 
                     it('should be called before compile', function () {
                         
                         var called = false,
-                            Test = Vue.extend({ beforeCompile: function (options) {
-                                assert.ok(options.ok)
-                                called = true
-                            }}),
-                            Test2 = Vue.extend({ created: function (options) {
+                            Test = Vue.extend({ created: function (options) {
                                 assert.ok(options.ok)
                                 called = true
                             }})
                         new Test({ ok: true })
                         assert.ok(called)
-                        called = false
-                        new Test2({ ok: true })
-                        assert.ok(called)
+
                     })
 
                 })
 
-                describe('afterCompile / ready', function () {
+                describe('ready', function () {
 
                     it('should be called after compile with options', function () {
                         var called = false,
@@ -695,12 +738,8 @@ describe('UNIT: API', function () {
                                 assert.notOk(this.$compiler.init)
                                 called = true
                             },
-                            Test = Vue.extend({ afterCompile: hook }),
-                            Test2 = Vue.extend({ ready: hook })
+                            Test = Vue.extend({ ready: hook })
                         new Test({ ok: true })
-                        assert.ok(called)
-                        called = false
-                        new Test2({ ok: true })
                         assert.ok(called)
                     })
 
@@ -709,15 +748,20 @@ describe('UNIT: API', function () {
                 describe('beforeDestroy', function () {
                 
                     it('should be called before a vm is destroyed', function () {
-                        var called = false
+                        var called1 = false,
+                            called2 = false
                         var Test = Vue.extend({
                             beforeDestroy: function () {
-                                called = true
+                                called1 = true
                             }
                         })
                         var test = new Test()
+                        test.$on('hook:beforeDestroy', function () {
+                            called2 = true
+                        })
                         test.$destroy()
-                        assert.ok(called)
+                        assert.ok(called1)
+                        assert.ok(called2)
                     })
 
                 })
@@ -725,17 +769,62 @@ describe('UNIT: API', function () {
                 describe('afterDestroy', function () {
                     
                     it('should be called after a vm is destroyed', function () {
-                        var called = false,
+                        var called1 = false, called2 = false,
                             Test = Vue.extend({
                                 afterDestroy: function () {
                                     assert.notOk(this.$el.parentNode)
-                                    called = true
+                                    called1 = true
                                 }
                             })
                         var test = new Test()
                         document.body.appendChild(test.$el)
+                        test.$on('hook:afterDestroy', function () {
+                            called2 = true
+                        })
                         test.$destroy()
-                        assert.ok(called)
+                        assert.ok(called1)
+                        assert.ok(called2)
+                    })
+
+                })
+
+                describe('enteredView', function () {
+                    
+                    it('should be called after enter view', function () {
+                        var called1 = false, called2 = false,
+                            test = new Vue({
+                                enteredView: function () {
+                                    assert.strictEqual(this.$el.parentNode, document.getElementById('test'))
+                                    called1 = true
+                                }
+                            })
+                        test.$on('hook:enteredView', function () {
+                            called2 = true
+                        })
+                        test.$appendTo('#test')
+                        assert.ok(called1)
+                        assert.ok(called2)
+                    })
+
+                })
+
+                describe('leftView', function () {
+                    
+                    it('should be called after left view', function () {
+                        var called1 = false, called2 = false,
+                            test = new Vue({
+                                leftView: function () {
+                                    assert.strictEqual(this.$el.parentNode, null)
+                                    called1 = true
+                                }
+                            })
+                        test.$on('hook:leftView', function () {
+                            called2 = true
+                        })
+                        document.getElementById('test').appendChild(test.$el)
+                        test.$remove()
+                        assert.ok(called1)
+                        assert.ok(called2)
                     })
 
                 })
@@ -743,21 +832,23 @@ describe('UNIT: API', function () {
                 describe('Hook inheritance', function () {
                     
                     it('should merge hooks with parent Class', function () {
-                        var parentCreated = false,
-                            childCreated = false
+                        var called = []
                         var Parent = Vue.extend({
                             created: function () {
-                                parentCreated = true
+                                called.push('parent')
                             }
                         })
                         var Child = Parent.extend({
                             created: function () {
-                                childCreated = true
+                                called.push('child')
                             }
                         })
-                        new Child()
-                        assert.ok(parentCreated)
-                        assert.ok(childCreated)
+                        new Child({
+                            created: function () {
+                                called.push('instance')
+                            }
+                        })
+                        assert.deepEqual(called, ['parent', 'child', 'instance'])
                     })
 
                 })

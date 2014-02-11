@@ -157,11 +157,11 @@ describe('UNIT: Directive', function () {
 
         it('should extract correct argument', function () {
             var d = Directive.parse('text', 'todo:todos', compiler),
-                e = Directive.parse('text', 'todo:todos + abc', compiler),
-                f = Directive.parse('text', 'todo:todos | fsf fsef', compiler)
+                e = Directive.parse('text', '$todo:todos + abc', compiler),
+                f = Directive.parse('text', '-todo-fsef:todos | fsf fsef', compiler)
             assert.strictEqual(d.arg, 'todo', 'simple')
-            assert.strictEqual(e.arg, 'todo', 'expression')
-            assert.strictEqual(f.arg, 'todo', 'with filters')
+            assert.strictEqual(e.arg, '$todo', 'expression')
+            assert.strictEqual(f.arg, '-todo-fsef', 'with hyphens and filters')
         })
 
         it('should be able to determine whether the key is an expression', function () {
@@ -289,16 +289,17 @@ describe('UNIT: Directive', function () {
             assert.strictEqual(unbound, false)
         })
 
-        it('should call _unbind() if it has an element', function () {
+        it('should call _unbind() and null everything if it has an element', function () {
             d.el = true
-            d.unbind(true)
+            d.unbind()
             assert.strictEqual(unbound, true)
-            assert.ok(d.el)
+            assert.ok(d.el === null && d.vm === null && d.binding === null && d.compiler === null)
         })
 
-        it('should null everything if it\'s called for VM destruction', function () {
+        it('should not execute if called more than once', function () {
+            unbound = false
             d.unbind()
-            assert.ok(d.el === null && d.vm === null && d.binding === null && d.compiler === null)
+            assert.notOk(unbound)
         })
 
     })

@@ -110,11 +110,13 @@ describe('UNIT: Utils', function () {
         })
         
         it('should output empty string if value is not string or number', function () {
-            assert.strictEqual(txt({}), '')
-            assert.strictEqual(txt([]), '')
             assert.strictEqual(txt(undefined), '')
             assert.strictEqual(txt(null), '')
             assert.strictEqual(txt(NaN), '')
+        })
+
+        it('should stringify value if is object', function () {
+            assert.strictEqual(txt({foo:"bar"}), '{"foo":"bar"}')
         })
 
     })
@@ -315,6 +317,37 @@ describe('UNIT: Utils', function () {
             config.debug = false
             console.trace = oldTrace
             console.warn = oldWarn
+        })
+
+    })
+
+    describe('addClass', function () {
+
+        var el = document.createElement('div')
+        
+        it('should work', function () {
+            utils.addClass(el, 'hihi')
+            assert.strictEqual(el.className, 'hihi')
+            utils.addClass(el, 'hi')
+            assert.strictEqual(el.className, 'hihi hi')
+        })
+
+        it('should not add duplicate', function () {
+            utils.addClass(el, 'hi')
+            assert.strictEqual(el.className, 'hihi hi')
+        })
+
+    })
+
+    describe('removeClass', function () {
+        
+        it('should work', function () {
+            var el = document.createElement('div')
+            el.className = 'hihi hi ha'
+            utils.removeClass(el, 'hi')
+            assert.strictEqual(el.className, 'hihi ha')
+            utils.removeClass(el, 'ha')
+            assert.strictEqual(el.className, 'hihi')
         })
 
     })

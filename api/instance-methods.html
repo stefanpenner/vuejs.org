@@ -5,12 +5,12 @@
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
         <script>
             window.PAGE_TYPE = "api"
         </script>
-        <script src="/js/classList.js"></script>
+        <script src="/js/vue.min.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,6 +38,7 @@
 </div>
         
         <div id="main">
+        
             
     <div class="sidebar">
     <div class="toggle">···</div>
@@ -64,8 +65,8 @@
 </div>
 
 <div class="content api with-sidebar">
-    <h1 id="Instance_Methods">Instance Methods</h1>
-<h2 id="Data_Changes">Data Changes</h2>
+    <h1>Instance Methods</h1>
+    <h2 id="Data_Changes">Data Changes</h2>
 <h3 id="vm-24-watch-28-_keypath-2c-_callback_-29-">vm.$watch( keypath, callback )</h3>
 <ul>
 <li><strong>keypath</strong> <code>String</code></li>
@@ -120,7 +121,7 @@
 <p>If no arguments are given, stop listening for all events; If only the event is given, remove all callbacks for that event; If both event and callback are given, remove that specific callback only.</p>
 <h2 id="DOM_Manipulation">DOM Manipulation</h2>
 <blockquote>
-<p>All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger vue.js transitions if there are any declared on vm’s <code>$el</code>. For more details on transitions see <a href="/guide/transitions.html">Using Transition Effects</a>.</p>
+<p>All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger vue.js transitions if there are any declared on vm’s <code>$el</code>. For more details on transitions see <a href="/guide/transitions.html">Adding Transition Effects</a>.</p>
 </blockquote>
 <h3 id="vm-24-appendTo-28-_element_-7c-_selector_-29-">vm.$appendTo( element | selector )</h3>
 <ul>
@@ -144,6 +145,7 @@
 <p>Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its <code>$el</code> from the DOM.</p>
 
 </div>
+        
         </div>
         <script src="/js/common.js"></script>
     </body>

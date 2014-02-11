@@ -5,12 +5,12 @@
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
         <script>
             window.PAGE_TYPE = "guide"
         </script>
-        <script src="/js/classList.js"></script>
+        <script src="/js/vue.min.js"></script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,6 +38,7 @@
 </div>
         
         <div id="main">
+        
             
     <div class="sidebar">
     <div class="toggle">···</div>
@@ -61,29 +62,32 @@
         
             <li><a href="/guide/computed.html" class="sidebar-link">Computed Properties</a></li>
         
-            <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
+            <li><a href="/guide/transitions.html" class="sidebar-link">Adding Transition Effects</a></li>
         
             <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
         
             <li><a href="/guide/application.html" class="sidebar-link">Building Larger Apps</a></li>
+        
+            <li><a href="/guide/plugin.html" class="sidebar-link">Plugins</a></li>
         
         </ul>
     </div>
 </div>
 
 <div class="content guide with-sidebar">
-    <h1 id="Installation">Installation</h1>
-<blockquote>
-<p><strong>Compatibility Note:</strong> Vue.js does not support IE8 and below. For IE9, the <a href="https://github.com/remy/polyfills/blob/master/classList.js" target="_blank">classList polyfill</a> is needed.</p>
+    <h1>Installation</h1>
+    <blockquote>
+<p><strong>Compatibility Note:</strong> Vue.js does not support IE8 and below.</p>
 </blockquote>
 <h2 id="Standalone">Standalone</h2>
 <p>Simply download and include with a script tag. <code>Vue</code> will be registered as a global variable.</p>
-<ul>
-<li><p><a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.8.0/dist/vue.js" download target="_blank">Development Version</a> <br> - 87.75kb, plenty of comments</p>
-</li>
-<li><p><a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.8.0/dist/vue.min.js" download target="_blank">Production Version</a> <br> - 30.81kb minified / 10.57kb minified + gzipped</p>
-</li>
-</ul>
+<p><a class="button" href="https://raw.github.com/yyx990803/vue/v0.8.5/dist/vue.js" download target="_blank">Development Version</a><br><span class="light">95.79kb, plenty of comments</span></p>
+<p><a class="button" href="https://raw.github.com/yyx990803/vue/v0.8.5/dist/vue.min.js" download target="_blank">Production Version</a><br><span class="light">33.86kb minified / 11.54kb gzipped</span></p>
+<p>Also available on <a href="http://cdnjs.com" target="_blank">cdnjs</a> (takes 4 hours to sync so might not work for latest version):</p>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"//cdnjs.cloudflare.com/ajax/libs/vue/0.8.5/vue.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
 <h2 id="Component">Component</h2>
 <figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ component install yyx990803/vue
@@ -117,6 +121,7 @@
 <p><a href="/guide/">Let’s Get Started</a>.</p>
 
 </div>
+        
         </div>
         <script src="/js/common.js"></script>
     </body>
